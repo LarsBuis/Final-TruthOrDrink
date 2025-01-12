@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.GameConfigurationPage">
     <StackLayout Padding="20">
+        <!-- Rating Selection -->
         <Label Text="Select Rating:" FontSize="Medium" />
         <Picker x:Name="RatingPicker" Title="Select Rating" SelectedIndex="0">
             <Picker.Items>
@@ -11,11 +12,16 @@
             </Picker.Items>
         </Picker>
 
+        <!-- Number of Questions -->
+        <Label Text="Number of Questions:" FontSize="Medium" />
+        <Entry x:Name="QuestionEntry" Placeholder="Enter number of questions" Keyboard="Numeric" Text="10" />
 
+        <!-- Add Players -->
         <Label Text="Add Players:" FontSize="Medium" Margin="0,20,0,0" />
         <Entry x:Name="PlayerEntry" Placeholder="Enter player name" />
         <Button Text="Add Player" Clicked="AddPlayer_Clicked" />
 
+        <!-- Player List -->
         <CollectionView ItemsSource="{Binding Players}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -26,7 +32,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-
+        <!-- Start Game Button -->
         <Button Text="Start Game" Clicked="StartGame_Clicked" Margin="0,20,0,0" />
     </StackLayout>
 </ContentPage>

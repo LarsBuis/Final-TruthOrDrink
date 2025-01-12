@@ -36,16 +36,22 @@ namespace MauiApp3
                 return;
             }
 
-            // Ensure rating is selected
             if (RatingPicker.SelectedItem == null)
             {
                 await DisplayAlert("Error", "Please select a rating.", "OK");
                 return;
             }
 
+            if (!int.TryParse(QuestionEntry.Text, out int totalQuestions) || totalQuestions <= 0)
+            {
+                await DisplayAlert("Error", "Please enter a valid number of questions.", "OK");
+                return;
+            }
+
             string rating = RatingPicker.SelectedItem.ToString();
-            await Navigation.PushAsync(new GamePage(Players, rating));
+            await Navigation.PushAsync(new GamePage(Players, rating, totalQuestions));
         }
+
 
     }
 }

@@ -1,0 +1,29 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp3.GamesListPage">
+    <StackLayout Padding="20">
+        <Label Text="Saved Games" FontSize="Large" HorizontalOptions="Center" />
+
+        <!-- CollectionView to display saved games -->
+        <CollectionView ItemsSource="{Binding Games}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="10">
+                        <StackLayout>
+                            <!-- Game Date -->
+                            <Label Text="{Binding Date}" FontSize="Medium" FontAttributes="Bold" />
+
+                            <!-- Number of Questions -->
+                            <Label Text="Drinks Per Player:" FontSize="Small" />
+
+                            <!-- Drinks per player -->
+                            <StackLayout Padding="10" BackgroundColor="#F5F5F5" Margin="5,0,0,5">
+                                <Label Text="{Binding DrinksPerPlayerFormatted}" FontSize="Small" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
