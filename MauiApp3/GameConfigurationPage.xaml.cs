@@ -7,7 +7,6 @@ namespace MauiApp3
     {
         public ObservableCollection<string> Players { get; set; } = new ObservableCollection<string>();
 
-
         public GameConfigurationPage()
         {
             InitializeComponent();
@@ -18,15 +17,10 @@ namespace MauiApp3
         {
             if (!string.IsNullOrWhiteSpace(PlayerEntry.Text))
             {
-                // Ensure the player name is added as a string
                 Players.Add(PlayerEntry.Text.Trim());
-
-                // Clear the entry after adding
                 PlayerEntry.Text = string.Empty;
             }
         }
-
-
 
         private async void StartGame_Clicked(object sender, EventArgs e)
         {
@@ -49,9 +43,10 @@ namespace MauiApp3
             }
 
             string rating = RatingPicker.SelectedItem.ToString();
-            await Navigation.PushAsync(new GamePage(Players, rating, totalQuestions));
+            bool useCustomQuestions = CustomQuestionsSwitch.IsToggled;
+
+            // Navigate to the GamePage and pass the toggle state
+            await Navigation.PushAsync(new GamePage(Players, rating, totalQuestions, useCustomQuestions));
         }
-
-
     }
 }

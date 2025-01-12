@@ -2,42 +2,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.GameConfigurationPage"
              BackgroundColor="#9966FF">
-    <StackLayout Padding="20">
 
-        <!-- Logo Image -->
-        <Image Source="logo_text.png" HorizontalOptions="Center" Margin="0,20,0,20" HeightRequest="200" />
+    <!-- Wrap StackLayout inside ScrollView to make the page scrollable -->
+    <ScrollView>
+        <StackLayout Padding="20">
 
-        <!-- Rating Selection -->
-        <Label Text="Select Rating:" FontSize="Medium" TextColor="White" />
-        <Picker x:Name="RatingPicker" Title="Select Rating" SelectedIndex="0">
-            <Picker.Items>
-                <x:String>pg</x:String>
-                <x:String>pg13</x:String>
-                <x:String>r</x:String>
-            </Picker.Items>
-        </Picker>
+            <!-- Logo Image -->
+            <Image Source="logo_text.png" HorizontalOptions="Center" Margin="0,20,0,20" />
 
-        <!-- Number of Questions -->
-        <Label Text="Number of Questions:" FontSize="Medium" TextColor="White" />
-        <Entry x:Name="QuestionEntry" Placeholder="Enter number of questions" Keyboard="Numeric" Text="10" />
+            <!-- Rating Selection -->
+            <Label Text="Select Rating:" FontSize="Medium" TextColor="White" />
+            <Picker x:Name="RatingPicker" Title="Select Rating" SelectedIndex="0">
+                <Picker.Items>
+                    <x:String>pg</x:String>
+                    <x:String>pg13</x:String>
+                    <x:String>r</x:String>
+                </Picker.Items>
+            </Picker>
 
-        <!-- Add Players -->
-        <Label Text="Add Players:" FontSize="Medium" Margin="0,20,0,0" TextColor="White" />
-        <Entry x:Name="PlayerEntry" Placeholder="Enter player name" />
-        <Button Text="Add Player" Clicked="AddPlayer_Clicked" BackgroundColor="White" TextColor="#9966FF" />
+            <!-- Number of Questions -->
+            <Label Text="Number of Questions:" FontSize="Medium" TextColor="White" />
+            <Entry x:Name="QuestionEntry" Placeholder="Enter number of questions" Keyboard="Numeric" Text="10" />
 
-        <!-- Player List -->
-        <CollectionView ItemsSource="{Binding Players}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10">
-                        <Label Text="{Binding .}" FontSize="Medium" TextColor="White" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <!-- Add Players -->
+            <Label Text="Add Players:" FontSize="Medium" Margin="0,20,0,0" TextColor="White" />
+            <Entry x:Name="PlayerEntry" Placeholder="Enter player name" />
+            <Button Text="Add Player" Clicked="AddPlayer_Clicked" />
 
-        <!-- Start Game Button -->
-        <Button Text="Start Game" Clicked="StartGame_Clicked" Margin="0,20,0,0" BackgroundColor="White" TextColor="#9966FF" />
-    </StackLayout>
+            <!-- Toggle for Custom Questions -->
+            <Label Text="Use Custom Questions:" FontSize="Medium" Margin="0,20,0,0" TextColor="White" />
+            <Switch x:Name="CustomQuestionsSwitch" />
+
+            <!-- Player List -->
+            <Label Text="Players List:" FontSize="Medium" Margin="0,20,0,0" TextColor="White" />
+            <CollectionView ItemsSource="{Binding Players}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding .}" FontSize="Medium" TextColor="White" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Start Game Button -->
+            <Button Text="Start Game" Clicked="StartGame_Clicked" Margin="0,20,0,0" BackgroundColor="White" TextColor="#9966FF" />
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

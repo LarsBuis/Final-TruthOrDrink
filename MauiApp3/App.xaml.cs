@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Microsoft.Maui.Controls;
 
 namespace MauiApp3
 {
@@ -23,6 +22,7 @@ namespace MauiApp3
         {
             InitializeComponent();
             MainPage = new AppShell();
+
         }
     }
 }

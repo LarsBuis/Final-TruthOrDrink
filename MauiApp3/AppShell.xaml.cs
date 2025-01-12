@@ -11,6 +11,7 @@ namespace MauiApp3
             // Register routes for navigation
             Routing.RegisterRoute(nameof(GameConfigurationPage), typeof(GameConfigurationPage));
             Routing.RegisterRoute(nameof(GamesListPage), typeof(GamesListPage));
+            Routing.RegisterRoute(nameof(CustomQuestionsPage), typeof(CustomQuestionsPage));
         }
     }
 }

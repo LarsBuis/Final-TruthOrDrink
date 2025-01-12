@@ -1,0 +1,28 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp3.CustomQuestionsPage"
+             Title="Custom Questions">
+
+    <StackLayout Padding="20">
+
+        <!-- Input Field for Custom Question -->
+        <Label Text="Enter a Custom Question:" FontSize="Medium" />
+        <Entry x:Name="QuestionEntry" Placeholder="Type your question here..." />
+
+        <!-- Add Question Button -->
+        <Button Text="Add Question" Clicked="AddQuestion_Clicked" />
+
+        <!-- List of Custom Questions -->
+        <Label Text="Custom Questions List:" FontSize="Medium" Margin="0,20,0,0" />
+        <CollectionView ItemsSource="{Binding CustomQuestions}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding QuestionText}" FontSize="Medium" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</ContentPage>

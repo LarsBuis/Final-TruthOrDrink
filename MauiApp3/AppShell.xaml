@@ -14,7 +14,9 @@
         <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate local:GameConfigurationPage}" />
         </Tab>
-
+        <Tab Title="Questions" Icon="q.png">
+            <ShellContent ContentTemplate="{DataTemplate local:CustomQuestionsPage}" />
+        </Tab>
         <!-- Games List Tab -->
         <Tab Title="Games List" Icon="list.png">
             <ShellContent ContentTemplate="{DataTemplate local:GamesListPage}" />

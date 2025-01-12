@@ -13,6 +13,14 @@ namespace MauiApp3
         public string DrinksPerPlayer { get; set; } // JSON format
     }
 
+    public class CustomQuestion
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string QuestionText { get; set; }
+    }
+
+
     public class GameDatabase
     {
         private readonly SQLiteAsyncConnection _database;
@@ -33,6 +41,24 @@ namespace MauiApp3
         public Task<List<Game>> GetSavedGamesAsync()
         {
             return _database.Table<Game>().ToListAsync();
+        }
+
+        // Method to create tables
+        public async Task CreateTablesAsync()
+        {
+            await _database.CreateTableAsync<CustomQuestion>();
+        }
+
+        // Method to save a custom question
+        public Task<int> SaveCustomQuestionAsync(CustomQuestion question)
+        {
+            return _database.InsertAsync(question);
+        }
+
+        // Method to get all custom questions
+        public Task<List<CustomQuestion>> GetCustomQuestionsAsync()
+        {
+            return _database.Table<CustomQuestion>().ToListAsync();
         }
     }
 }

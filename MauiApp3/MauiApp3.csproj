@@ -43,7 +43,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Images\logo.png" Color="#27233A" BaseSize="50,50"/>
+    <MauiSplashScreen Include="Resources\Images\logo.png" Color="#27233A" BaseSize="50,50" />
 
 
     <!-- Images -->
@@ -61,6 +61,7 @@
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\list.png" />
 	  <None Remove="Resources\Images\logo_text.png" />
+	  <None Remove="Resources\Images\q.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -72,6 +73,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="CustomQuestionsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="GameConfigurationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
