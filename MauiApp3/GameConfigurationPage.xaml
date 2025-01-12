@@ -1,9 +1,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp3.GameConfigurationPage">
+             x:Class="MauiApp3.GameConfigurationPage"
+             BackgroundColor="#9966FF">
     <StackLayout Padding="20">
+
+        <!-- Logo Image -->
+        <Image Source="logo_text.png" HorizontalOptions="Center" Margin="0,20,0,20" HeightRequest="200" />
+
         <!-- Rating Selection -->
-        <Label Text="Select Rating:" FontSize="Medium" />
+        <Label Text="Select Rating:" FontSize="Medium" TextColor="White" />
         <Picker x:Name="RatingPicker" Title="Select Rating" SelectedIndex="0">
             <Picker.Items>
                 <x:String>pg</x:String>
@@ -13,26 +18,26 @@
         </Picker>
 
         <!-- Number of Questions -->
-        <Label Text="Number of Questions:" FontSize="Medium" />
+        <Label Text="Number of Questions:" FontSize="Medium" TextColor="White" />
         <Entry x:Name="QuestionEntry" Placeholder="Enter number of questions" Keyboard="Numeric" Text="10" />
 
         <!-- Add Players -->
-        <Label Text="Add Players:" FontSize="Medium" Margin="0,20,0,0" />
+        <Label Text="Add Players:" FontSize="Medium" Margin="0,20,0,0" TextColor="White" />
         <Entry x:Name="PlayerEntry" Placeholder="Enter player name" />
-        <Button Text="Add Player" Clicked="AddPlayer_Clicked" />
+        <Button Text="Add Player" Clicked="AddPlayer_Clicked" BackgroundColor="White" TextColor="#9966FF" />
 
         <!-- Player List -->
         <CollectionView ItemsSource="{Binding Players}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10">
-                        <Label Text="{Binding .}" FontSize="Medium" />
+                        <Label Text="{Binding .}" FontSize="Medium" TextColor="White" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         <!-- Start Game Button -->
-        <Button Text="Start Game" Clicked="StartGame_Clicked" Margin="0,20,0,0" />
+        <Button Text="Start Game" Clicked="StartGame_Clicked" Margin="0,20,0,0" BackgroundColor="White" TextColor="#9966FF" />
     </StackLayout>
 </ContentPage>

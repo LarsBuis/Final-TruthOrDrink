@@ -1,12 +1,22 @@
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:MauiApp3"
-       x:Class="MauiApp3.AppShell">
+       x:Class="MauiApp3.AppShell"
+       BackgroundColor="#27233A"
+       Shell.TabBarBackgroundColor="#27233A"
+       Shell.TabBarForegroundColor="White"
+       Shell.TabBarTitleColor="White"
+       Shell.TabBarUnselectedColor="LightGray"
+       Shell.TabBarDisabledColor="Gray">
+
     <TabBar>
+        <!-- Home Tab -->
         <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate local:GameConfigurationPage}" />
         </Tab>
-        <Tab Title="Games List" Icon="blank.png">
+
+        <!-- Games List Tab -->
+        <Tab Title="Games List" Icon="list.png">
             <ShellContent ContentTemplate="{DataTemplate local:GamesListPage}" />
         </Tab>
     </TabBar>
