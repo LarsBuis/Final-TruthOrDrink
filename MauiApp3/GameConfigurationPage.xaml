@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp3.GameConfigurationPage">
+    <StackLayout Padding="20">
+        <Label Text="Select Rating:" FontSize="Medium" />
+        <Picker x:Name="RatingPicker" Title="Select Rating" SelectedIndex="0">
+            <Picker.Items>
+                <x:String>pg</x:String>
+                <x:String>pg13</x:String>
+                <x:String>r</x:String>
+            </Picker.Items>
+        </Picker>
+
+
+        <Label Text="Add Players:" FontSize="Medium" Margin="0,20,0,0" />
+        <Entry x:Name="PlayerEntry" Placeholder="Enter player name" />
+        <Button Text="Add Player" Clicked="AddPlayer_Clicked" />
+
+        <CollectionView ItemsSource="{Binding Players}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding .}" FontSize="Medium" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <Button Text="Start Game" Clicked="StartGame_Clicked" Margin="0,20,0,0" />
+    </StackLayout>
+</ContentPage>
