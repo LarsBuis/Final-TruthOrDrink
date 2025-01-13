@@ -1,11 +1,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.GamePage">
-    <StackLayout Padding="20">
-        <Label x:Name="CurrentPlayerLabel" FontSize="Large" HorizontalOptions="Center" />
-        <Label x:Name="QuestionLabel" FontSize="Medium" HorizontalOptions="Center" Margin="0,20,0,20" />
+    <Frame>
 
-        <Button Text="Truth" Clicked="TruthButton_Clicked" HorizontalOptions="FillAndExpand" />
-        <Button Text="Drink" Clicked="DrinkButton_Clicked" HorizontalOptions="FillAndExpand" Margin="0,10,0,0" />
-    </StackLayout>
+        <!-- Swipe Gesture Recognizers on the whole frame -->
+        <Frame.GestureRecognizers>
+            <!-- Swipe Left for Truth -->
+            <SwipeGestureRecognizer Direction="Left" Swiped="OnSwipeLeft" Threshold="50" />
+            <!-- Swipe Right for Drink -->
+            <SwipeGestureRecognizer Direction="Right" Swiped="OnSwipeRight" Threshold="50" />
+        </Frame.GestureRecognizers>
+
+        <!-- Game Content -->
+        <StackLayout Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+
+            <!-- Current Player Label -->
+            <Label x:Name="CurrentPlayerLabel" FontSize="Large" HorizontalOptions="Center" />
+
+            <!-- Question Label -->
+            <Label x:Name="QuestionLabel" FontSize="Medium" HorizontalOptions="Center" Margin="0,20,0,20" />
+
+            <!-- Info Text -->
+            <Label Text="Swipe left for Truth, right for Drink"
+                   HorizontalOptions="Center" FontSize="Small" />
+
+            <!-- Optional Buttons (for non-swipe interaction) -->
+            <Button Text="Truth" Clicked="TruthButton_Clicked" HorizontalOptions="FillAndExpand" />
+            <Button Text="Drink" Clicked="DrinkButton_Clicked" HorizontalOptions="FillAndExpand" Margin="0,10,0,0" />
+
+        </StackLayout>
+    </Frame>
 </ContentPage>

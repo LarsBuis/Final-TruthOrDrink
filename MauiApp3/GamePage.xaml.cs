@@ -27,7 +27,7 @@ namespace MauiApp3
             _drinkCounts = _players.ToDictionary(player => player, player => 0); // Initialize drink counts
             _useCustomQuestions = useCustomQuestions;
             LoadQuestion();
-            
+
         }
 
         private async void LoadQuestion()
@@ -105,6 +105,35 @@ namespace MauiApp3
             LoadQuestion();
         }
 
+        private void OnSwipeLeft(object sender, SwipedEventArgs e)
+        {
+            try
+            {
+                Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100));
+            }
+            catch (FeatureNotSupportedException)
+            {
+                Console.WriteLine("Vibration not supported on this device.");
+            }
+
+            TruthButton_Clicked(sender, e);
+        }
+
+        private void OnSwipeRight(object sender, SwipedEventArgs e)
+        {
+            try
+            {
+                Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100));
+            }
+            catch (FeatureNotSupportedException)
+            {
+                Console.WriteLine("Vibration not supported on this device.");
+            }
+
+            DrinkButton_Clicked(sender, e);
+        }
+
+
         private void NextPlayer()
         {
             _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
@@ -112,28 +141,29 @@ namespace MauiApp3
 
         private async Task DisplayGameSummary()
         {
-            string summary = "Game Over! Here are the drink counts:\n\n";
-            foreach (var player in _drinkCounts)
-            {
-                summary += $"{player.Key}: {player.Value} drinks\n";
-            }
-
-            await DisplayAlert("Game Summary", summary, "OK");
-
-            // Convert drink counts to JSON
-            string drinksJson = JsonConvert.SerializeObject(_drinkCounts);
-
-            // Create a new Game object and save it to the database
+            // (Existing code)
             var game = new Game
             {
                 Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 Players = string.Join(", ", _players),
-                DrinksPerPlayer = drinksJson
+                DrinksPerPlayer = JsonConvert.SerializeObject(_drinkCounts)
             };
 
-            await App.Database.SaveGameAsync(game);
+            int rowsAffected = await App.Database.SaveGameAsync(game);
+            bool isSaved = rowsAffected > 0;
 
+            if (isSaved)
+            {
+                Console.WriteLine("Game saved successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Game failed to save!");
+            }
+
+            // Navigate back to the root
             await Navigation.PopToRootAsync();
         }
+
     }
 }
