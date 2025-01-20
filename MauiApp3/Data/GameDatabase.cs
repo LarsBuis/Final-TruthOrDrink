@@ -10,7 +10,7 @@ namespace MauiApp3
         public int Id { get; set; }
         public string Date { get; set; }
         public string Players { get; set; }
-        public string DrinksPerPlayer { get; set; } // JSON format
+        public string DrinksPerPlayer { get; set; }
     }
 
     public class CustomQuestion
@@ -29,6 +29,7 @@ namespace MauiApp3
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Game>().Wait();
+            _database.CreateTableAsync<CustomQuestion>().Wait();
         }
 
         // Method to save the game automatically
@@ -43,11 +44,6 @@ namespace MauiApp3
             return _database.Table<Game>().ToListAsync();
         }
 
-        // Method to create tables
-        public async Task CreateTablesAsync()
-        {
-            await _database.CreateTableAsync<CustomQuestion>();
-        }
 
         // Method to save a custom question
         public Task<int> SaveCustomQuestionAsync(CustomQuestion question)

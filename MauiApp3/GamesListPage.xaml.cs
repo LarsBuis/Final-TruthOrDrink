@@ -12,27 +12,45 @@ namespace MauiApp3
         {
             InitializeComponent();
             BindingContext = this;
-            LoadGames();
         }
 
-        private async void LoadGames()
+        protected override void OnAppearing()
         {
+            base.OnAppearing();
+            ReloadGames();
+        }
+
+        private async void ReloadGames()
+        {
+            // Clear the existing list to avoid duplicates
+            Games.Clear();
+
+            // Fetch the games from the database
             var games = await App.Database.GetSavedGamesAsync();
+
             foreach (var game in games)
             {
-                // Deserialize the DrinksPerPlayer JSON to a dictionary
-                var drinksPerPlayer = JsonConvert.DeserializeObject<Dictionary<string, int>>(game.DrinksPerPlayer);
-
-                // Format the drinks per player for display
-                string drinksFormatted = string.Join("\n", drinksPerPlayer.Select(d => $"{d.Key}: {d.Value} drinks"));
-
-                // Add the game to the observable collection
-                Games.Add(new GameViewModel
+                try
                 {
-                    Date = $"Date: {game.Date}",
-                    Players = game.Players,
-                    DrinksPerPlayerFormatted = drinksFormatted
-                });
+                    // Deserialize the DrinksPerPlayer JSON to a dictionary
+                    var drinksPerPlayer = JsonConvert.DeserializeObject<Dictionary<string, int>>(game.DrinksPerPlayer);
+
+                    // Format the drinks per player for display
+                    string drinksFormatted = string.Join("\n", drinksPerPlayer.Select(d => $"{d.Key}: {d.Value} drinks"));
+
+                    // Add the game to the observable collection
+                    Games.Add(new GameViewModel
+                    {
+                        Date = $"Date: {game.Date}",
+                        Players = game.Players,
+                        DrinksPerPlayerFormatted = drinksFormatted
+                    });
+                }
+                catch (Exception ex)
+                {
+                    // Handle any JSON deserialization errors or other exceptions
+                    await DisplayAlert("Error", $"Failed to load game: {ex.Message}", "OK");
+                }
             }
         }
     }

@@ -61,7 +61,7 @@
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\list.png" />
 	  <None Remove="Resources\Images\logo_text.png" />
-	  <None Remove="Resources\Images\q.png" />
+	  <None Remove="Resources\Images\question.png" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -34,9 +34,7 @@ namespace MauiApp3
         {
             if (_questionsAsked >= _totalQuestions)
             {
-                await DisplayAlert("Game Over", "You've reached the end of the game!", "OK");
-                await Navigation.PopToRootAsync();
-                return;
+                await DisplayGameSummary();
             }
 
             string question;
@@ -141,7 +139,6 @@ namespace MauiApp3
 
         private async Task DisplayGameSummary()
         {
-            // (Existing code)
             var game = new Game
             {
                 Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
